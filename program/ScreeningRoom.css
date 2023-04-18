@@ -1,0 +1,544 @@
+/* 声明全局css变量,声明变量的时候,变量名前面要加-- */
+:root {
+	/* 背景深度,数字越大,图片看起来距离越远 */
+	--depth: 500px;
+	/* 设置文字的偏转角度 */
+	--turnLeft: 0.10turn;
+	--turnRight: -0.10turn;
+	/* 用var()函数自定义属性名 */
+	--turn: var(--turnRight);
+}
+p{
+	color: white;
+}
+
+/* ::before和::after下特有的content,用于在css渲染中向元素逻辑的头部或尾部添加内容 */
+*,
+*::before,
+*::after {
+/* 为元素指定的任何内边距和边框都将在已设定宽度和高度内进行绘制 */
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑", verdana, Arial, Helvetica, sans-serif;
+}
+
+html {
+	height: 100%;
+/* 规定当内容溢出元素框时,内容被修剪,并且其余内容是不可见的 */
+	overflow: hidden;
+}
+
+body {
+	height: 100%;
+/* 垂直轴上，内容会被修剪,但是浏览器会显示滚动条以便查看其余内容 */
+	overflow-y: scroll;
+/* 优化滚动,捕捉其垂直轴上的位置 */
+    scroll-snap-type: y mandatory;
+	background: hsl(0 0% 10%);
+/* 规定观察者与z=0平面的距离,使具有三维位置变换的元素产生透视效果 */
+	perspective: 1000px;
+/* 变换角度 */
+	perspective-origin: 50% 35%;
+}
+
+.building {
+/* 使被转换的子元素保留其3D转换 */
+	transform-style: preserve-3d;
+}
+
+.room {
+	position: relative;
+	border: 4vmax solid hsl(0 0% 10%);
+/* 设置各个板块的的高度和宽度 */
+	height: 75vh;
+	width: 100vw;
+/* 网页是一块一块垂直排列的,设置滚动对齐模式 */
+	scroll-snap-align: center;
+/* 指定嵌套元素在3D空间中的呈现 */
+	transform-style: preserve-3d;
+}
+/* 设置放映室块与块之间的距离 */
+.room + .room {
+	border-top: 0;
+}
+
+.room::before,
+.room::after {
+	content: '';
+	position: absolute;
+	height: var(--depth);
+	width: 100%;
+	backface-visibility: hidden;
+}
+/* 放映室天花板 */
+.room::before {
+	background:
+/* 定义放映室天花板的渐变效果 */
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		lightgray; 
+	transform: rotatex(-90deg) scale(1.001);
+	transform-origin: center top;
+}
+/* 放映室地板 */
+.room::after {
+	bottom: 0;
+	background:
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/h1.jpg) center / cover,
+		sandybrown;
+	transform: rotatex(90deg);
+	transform-origin: center bottom;
+}
+
+/* 第一个：《龙猫》 */
+.room-walls1 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w1.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+/* 定义放映室左侧和右侧墙的效果 */
+.room-walls1::before,
+.room-walls1::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+/* 放映室左侧墙 */
+.room-walls1::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w2.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+/* 放映室右侧墙 */
+.room-walls1::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w3.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+/* 第二个：《疯狂动物城》 */
+.room-walls2 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w6.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+
+.room-walls2::before,
+.room-walls2::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+
+.room-walls2::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w5.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+
+.room-walls2::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w4.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+/* 第三个：《寻梦环游记》 */
+.room-walls3 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w7.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+
+.room-walls3::before,
+.room-walls3::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+
+.room-walls3::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w8.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+
+.room-walls3::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w9.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+
+/* 第四个:《蜡笔小新》 */
+.room-walls4 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w10.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+
+.room-walls4::before,
+.room-walls4::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+
+.room-walls4::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w11.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+
+.room-walls4::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w12.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+
+/* 第五个:《哆啦A梦》 */
+.room-walls5 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w13.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+
+.room-walls5::before,
+.room-walls5::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+
+.room-walls5::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w14.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+
+.room-walls5::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w15.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+
+/* 第六个:《你的名字》 */
+.room-walls6 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w16.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+.room-walls6::before,
+.room-walls6::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+.room-walls6::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w17.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+.room-walls6::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w18.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+/* 第七个:《天空之城》 */
+.room-walls7 {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(to top, hsl(0 0% 90%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 0% / 30%), hsl(0 0% 0% / 50%)),
+		url(img/w19.jpg) center / cover,
+		darkgray;
+	transform: translatez(calc(var(--depth) * -1));
+	transform-style: preserve-3d;
+}
+.room-walls7::before,
+.room-walls7::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: var(--depth);
+}
+
+.room-walls7::before {
+	right: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w20.jpg) center / cover,
+		gray;
+	transform: rotatey(90deg);
+	transform-origin: right center;
+}
+
+.room-walls7::after {
+	left: 100%;
+	background:
+		linear-gradient(to top, hsl(0 0% 75%) 2.5vh, transparent 0),
+		radial-gradient(hsl(0 0% 100% / 10%), hsl(0 0% 0% / 10%)),
+		url(img/w21.jpg) center / cover,
+		gray;
+	transform: rotatey(-90deg);
+	transform-origin: left center;
+}
+
+.room-content {
+	display: grid;
+	place-content: center;
+	height: 100%;
+	width: 100%;
+	color: white;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: clamp(1em, 20vmin, 8em);
+	font-weight: 200;
+	text-align: center;
+	text-shadow: 0 5px 10px hsl(0 0% 0% / 20%);
+	transform: translatez(calc(var(--depth) / -2)) rotatey(var(--turn));
+}
+
+.room:nth-child(odd) > .room-content {
+	--turn: var(--turnLeft);
+}
+
+/* 导航条部分css */
+nav {
+  float: right;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  float: left;
+  position: relative;
+}
+nav ul li a {
+  display: block;
+  padding: 0 20px;
+  line-height: 70px;
+  background: #ffffff;
+  color: #463f3f;
+  text-decoration: none;
+}
+nav ul li a:hover {
+  background: #f2f2f2;
+  color: #fb5958;
+}
+nav ul li a:not(:only-child):after {
+  padding-left: 4px;
+  content: ' ▾';
+}
+nav ul li ul li {
+  min-width: 190px;
+}
+nav ul li ul li a {
+  padding: 15px;
+  line-height: 20px;
+}
+.nav-dropdown {
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+}
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+  height: 70px;
+  width: 70px;
+}
+@media only screen and (max-width: 800px) {
+  .nav-mobile {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+    padding: 70px 0 15px;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul li {
+    float: none;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+  }
+  nav ul li ul li a {
+    padding-left: 30px;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+}
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: #463f3f;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+@media screen and (min-width: 800px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+.navigation {
+  height: 70px;
+  background: #ffffff;
+}
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.brand {
+  position: absolute;
+  padding-left: 20px;
+  float: left;
+  line-height: 70px;
+  text-transform: uppercase;
+  font-size: 1.4em;
+}
+.brand a,
+.brand a:visited {
+  color: #463f3f;
+  text-decoration: none;
+}
+
