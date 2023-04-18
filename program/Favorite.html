@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+		<link rel="stylesheet" href="Favorite.css">
+		
+	</head>
+	<body>
+		<!-- 头部选项卡 -->
+		<header>
+			<label for="movies"><h3>我最喜欢的动漫电影：</h3></label> 
+				<select name="movies" id="movies">
+					<option value="1">你的名字。</option>
+					<option value="2" selected>千与千寻</option>
+					<option value="3">大闹天宫</option>
+					<option value="4">龙猫</option>
+					<option value="5">寻梦环游记</option>
+				</select>
+		</header>
+		
+		<p>系统建议是否看动漫：</p>
+		<button onclick="myFunction()">点击这里看建议</button>
+		<p id="demo"></p>
+		<script>
+		function myFunction(){
+			var x;
+			var d=new Date().getDay();
+			switch (d){
+		  		case 0:x="今天是星期日，愉快呆在动漫放映厅吧";
+		    	break;
+		 		case 1:x="今天是星期一，好好学习不要来动漫放映厅了";
+		        break;
+		  		case 2:x="今天是星期二，今天也要认真学习，不要看动漫";
+		        break;
+		        case 3:x="今天是星期三，少看动漫，马上就周末了";
+		   	 	break;
+		  		case 4:x="今天是星期四，坚持一下，周末再看动漫";
+		    	break;
+		  		case 5:x="今天是星期五，可以休息一下看一会儿动漫";
+		        break;
+		  		case 6:x="今天是星期六，快乐看动漫吧";
+		    	break;
+		 	}
+			document.getElementById("demo").innerHTML=x;
+		}
+		</script>
+		
+		<!-- 旋转立方体部分 -->
+		
+		<!-- 外层最大容器 -->
+		<div class="wrap">
+			<!--包裹所有元素的容器-->
+			<div class="cube">
+				<!--前面图片 -->
+				<div class="out_front">
+					<img src="img/w1.jpg" class="pic" />
+				</div>
+				<!--后面图片 -->
+				<div class="out_back">
+					<img src="img/w2.jpg" class="pic" />
+				</div>
+				<!--左面图片 -->
+				<div class="out_left">
+					<img src="img/w3.jpg" class="pic" />
+				</div>
+				<!--右面图片 -->
+				<div class="out_right">
+					<img src="img/w4.jpg" class="pic" />
+				</div>
+				<!--上面图片 -->
+				<div class="out_top">
+					<img src="img/w5.jpg" class="pic" />
+				</div>
+				<!--下面图片 -->
+				<div class="out_bottom">
+					<img src="img/w6.jpg" class="pic" />
+				</div>
+		
+				<!--小正方体 -->
+				<span class="in_front">
+					<img src="img/w7.jpg" class="in_pic" />
+				</span>
+				<span class="in_back">
+					 <img src="img/w8.jpg" class="in_pic" />
+				</span>
+				<span class="in_left">
+					<img src="img/w9.jpg" class="in_pic" />
+				</span>
+				<span class="in_right">
+					<img src="imgimg/w1.jpg" class="in_pic" />
+				</span>
+				<span class="in_top">
+					<img src="img/w10.jpg" class="in_pic" />
+				</span>
+				<span class="in_bottom">
+					<img src="img/w10.jpg" class="in_pic" />
+				</span>
+			</div>
+		</div>
+	
+		
+		<!-- 主要内容部分 -->
+		<div id="movie">
+			<a href="#">
+				<img src="img/w17.jpg" alt="#">
+			</a>
+			<div id="content">
+				<h2>你的名字。</h2>
+				<p>(2016)</p>
+				<p>《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事</p>
+				<h1>推荐指数：⭐⭐⭐</h1>
+			</div>
+			
+			<a href="#">
+				<img src="img/e1.jpg" alt="#">
+			</a>
+			<div id="content">
+				<h2>千与千寻</h2>
+				<p>(2001)</p>
+				<p>《千与千寻》由吉卜力工作室制作的动画电影，由宫崎骏执导，柊瑠美、入野自由、中村彰男、夏木真理等人参与配音。该片讲述了千寻意外来到神灵世界后，为了救因惩罚而变成猪的家人，经历许多磨难的故事</p>
+				<h1>推荐指数：⭐⭐⭐⭐⭐</h1>
+			</div>
+			
+			<a href="#">
+				<img src="img/w17.jpg" alt="#">
+			</a>
+			<div id="content">
+				<h2>你的名字</h2>
+				<p>(2016)</p>
+				<p>《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事</p>
+				<h1>推荐指数：⭐⭐⭐⭐</h1>
+			</div>
+			
+			<a href="#">
+				<img src="img/w17.jpg" alt="#">
+			</a>
+			<div id="content">
+				<h2>你的名字</h2>
+				<p>(2016)</p>
+				<p>《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事</p>
+				<h1>推荐指数：⭐⭐⭐⭐</h1>
+			</div>
+			
+			<a href="#">
+				<img src="img/w17.jpg" alt="#">
+			</a>
+			<div id="content">
+				<h2>你的名字</h2>
+				<p>(2016)</p>
+				<p>《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事</p>
+				<h1>推荐指数：⭐⭐⭐⭐⭐</h1>
+			</div>
+		</div>
+	</body>
+</html>
